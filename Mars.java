@@ -58,6 +58,7 @@ public class Mars
 	double periodsec, periodminutes;
 	Scanner mars = new Scanner(System.in);
 	DecimalFormat fmt = new DecimalFormat("###.###E0");
+	DecimalFormat fmdec = new DecimalFormat("##.000");
 	
 	// Add two lines of code; one is a prompt for an orbital height, second
 	// receives the value into variable height via a mars.nextDouble statement
@@ -79,10 +80,11 @@ public class Mars
 	// write a line of code which will calculate period (seconds), assign it to variable
 	periodsec = 2 * Math.PI * (totalheight / orbiterV);// period.  
 	periodminutes = periodsec / 60;
+	double perioddays = periodminutes / (60 * 24);
 	
 	// write a line of code that displays orbit period in minutes, not seconds.  Use the
 	// decimal formatter at the top of the method to display period
-		System.out.println("The orbit period, in minutes, is " + fmt.format(periodminutes) );
+		System.out.println("The orbit period, in minutes, is " + fmt.format(periodminutes) + " or " + fmdec.format(perioddays) + " days");
 	} // end of method "orbiter"
 	
 	// *******************************************************************************
