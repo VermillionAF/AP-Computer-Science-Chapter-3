@@ -1,3 +1,12 @@
+/********************************
+ * Name: Patrick Wooden
+ * Program: SCGeometry.java
+ * 
+ * Description: Calculates surface area and volume of several shapes. Also prompts for a material,
+ * which is used to calculate the weight of the figure in both kilograms and tons.
+ *
+ */
+
 import java.util.Scanner;
 import java.text.DecimalFormat;
 public class SCGeometry {
@@ -18,19 +27,19 @@ public class SCGeometry {
 			System.out.println("\t4 - Iron");
 			material = scan.nextInt();
 			switch (material) {
-			case 1:
+			case 1:// concrete
 				density = 2300;
 				maindecision = true;
 				break;
-			case 2:
+			case 2:// steel
 				density = 7850;
 				maindecision = true;
 				break;
-			case 3:
+			case 3:// wood
 				density = 600;
 				maindecision = true;
 				break;
-			case 4:
+			case 4:// iron
 				density = 7874;
 				maindecision = true;
 				break;
@@ -129,7 +138,7 @@ public class SCGeometry {
 				a = scan.nextDouble();
 				b = scan.nextDouble();
 				volume = (1 / 6) * Math.PI * height * ((3 * Math.pow(a, 2)) + (3 * Math.pow(b, 2)) + Math.pow(height, 2));
-				double R = Math.sqrt((Math.pow(a-b, 2) + Math.pow(height, 2)) / 4 * Math.pow(height, 2));
+				double R = Math.sqrt(((Math.pow(a-b, 2) + Math.pow(height, 2))((Math.pow(a-b, 2) + Math.pow(height, 2))) / 4 * Math.pow(height, 2));
 				sa = 2 * Math.PI * R * height;
 				answers();
 				menudecision = true;
