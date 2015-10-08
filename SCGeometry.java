@@ -5,7 +5,7 @@
  * Description: Calculates surface area and volume of several shapes. Also prompts for a material,
  * which is used to calculate the weight of the figure in both kilograms and tons.
  *
- */
+ *****************************/
 
 import java.util.Scanner;
 import java.text.DecimalFormat;
@@ -14,9 +14,10 @@ public class SCGeometry {
 	public static int material;
 	public static final double g = 9.8, tons = 907.18474;
 	public static boolean menudecision = false, maindecision = false, endresponse = false;
+	public static Scanner scan = new Scanner(System.in);
+	public static DecimalFormat fmt = new DecimalFormat("####.00");
 	
 	public static void main(String[] args) {
-		Scanner scan = new Scanner(System.in);
 		
 		while (!maindecision) {
 			System.out.println("What material is the shape made of? ");
@@ -57,8 +58,7 @@ public class SCGeometry {
 	} // end of main
 	
 	public static void menu() {
-		Scanner scan = new Scanner(System.in);
-		DecimalFormat fmt = new DecimalFormat("####.00");
+		endresponse = false;
 		System.out.println("What kind of shape are you calculating for?");
 		System.out.println("\t1 - Capsule");
 		System.out.println("\t2 - Circular Cone");
@@ -138,7 +138,7 @@ public class SCGeometry {
 				a = scan.nextDouble();
 				b = scan.nextDouble();
 				volume = (1 / 6) * Math.PI * height * ((3 * Math.pow(a, 2)) + (3 * Math.pow(b, 2)) + Math.pow(height, 2));
-				double R = Math.sqrt(((Math.pow(a-b, 2) + Math.pow(height, 2))((Math.pow(a-b, 2) + Math.pow(height, 2))) / 4 * Math.pow(height, 2));
+				double R = Math.sqrt((Math.pow(a-b, 2) + Math.pow(height, 2)) * (Math.pow(a-b, 2) + Math.pow(height, 2))) / ( 4 * Math.pow(height, 2));
 				sa = 2 * Math.PI * R * height;
 				answers();
 				menudecision = true;
@@ -166,15 +166,12 @@ public class SCGeometry {
 	}// end of menu
 	
 	public static void density(){
-		DecimalFormat fmt = new DecimalFormat("####.00");
 		mass = density * volume;
 		System.out.println("The mass of the given figure is " + fmt.format(mass) + " kilograms");
 		System.out.println("Or, it's also " + fmt.format(mass / tons) + " tons");
 		weight = mass * g;
 		System.out.println("The weight of the given figure is " + fmt.format(weight) + " Newtons");
-		System.out.print("Insert a 0 to quit, or a 1 to go back to menu: ");
-		loopProgram();
-			
+		repeat();
 	}// end of density
 	
 	public static double getRadius() {
@@ -190,22 +187,22 @@ public class SCGeometry {
 		density();
 	}// end of answers
 	
-	public static void loopProgram() {
-		Scanner scan = new Scanner(System.in);
-		int response = scan.nextInt();
-		while (!endresponse) {
-		switch (response) {
-		case 0:
+	public static void repeat() {
+		System.out.print("Insert a 0 to quit, or a 1 to go back to menu: ");
+		String response = scan.next();
+		if (response.equals("1")) {
 			endresponse = true;
-			break;
-		case 1:
 			menu();
-			break;
-		default:
-			System.out.println("Please insert a 0 or 1.");
-		}// end of switch-case response
-		}// end of while-loop end response
-	}//end of loopProgram
+		}// end of if-response-1
+		else if (response.equals("0") || response.equalsIgnoreCase("o")) {
+			System.out.println("Ending program...");
+			endresponse = true;
+		}//end of if-response-0o
+		else if (!response.equals("1") && !response.equals("0") && !response.equalsIgnoreCase("o")) {
+			System.out.println("Please insert a 1 or 0.");
+			
+		}//end of if-else response
+	}//end of repeat
 	
 	
 
