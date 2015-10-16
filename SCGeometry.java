@@ -16,6 +16,7 @@ public class SCGeometry {
 	public static boolean menudecision = false, maindecision = false, endresponse = false;
 	public static Scanner scan = new Scanner(System.in);
 	public static DecimalFormat fmt = new DecimalFormat("####.00");
+	public static DecimalFormat exp = new DecimalFormat("####.E0");
 	
 	public static void main(String[] args) {
 		
@@ -59,6 +60,7 @@ public class SCGeometry {
 	
 	public static void menu() {
 		endresponse = false;
+		menudecision = false;
 		System.out.println("What kind of shape are you calculating for?");
 		System.out.println("\t1 - Capsule");
 		System.out.println("\t2 - Circular Cone");
@@ -84,9 +86,8 @@ public class SCGeometry {
 				circumference = (2 * Math.PI * radius);
 				volume = (Math.PI * Math.pow(radius, 2)) * ((4/3)*radius + a);
 				sa = circumference * (2 * radius + a);
-				System.out.println("The volume is " + fmt.format(volume));
-				System.out.println("The surface area is " + fmt.format(sa));
 				menudecision = true;
+				answers();
 				break;
 			case 2:// circular cone
 				getRadius();
@@ -103,7 +104,6 @@ public class SCGeometry {
 			case 3: // circular cylinder
 				getRadius();
 				System.out.println("Input the height of the cylinder: ");
-				radius = scan.nextDouble();
 				height = scan.nextDouble();
 				volume = Math.PI * Math.pow(radius, 2) * height;
 				sa = (2 * Math.PI * radius * height) + (2 * (Math.PI * Math.pow(radius, 2)));
@@ -144,9 +144,11 @@ public class SCGeometry {
 				menudecision = true;
 				break;
 			case 8:// tube
-				System.out.print("Inser r1 and r2 for the tube: ");
+				System.out.print("Insert an outer and inner radius of the tube: ");
 				double r1 = scan.nextDouble();
 				double r2 = scan.nextDouble();
+				System.out.print("Insert the height: ");
+				height = scan.nextDouble();
 				double v1 = 2 * Math.PI * Math.pow(r1, 2);
 				double v2 = 2 * Math.PI * Math.pow(r2, 2);
 				volume = v1 - v2;
@@ -167,10 +169,12 @@ public class SCGeometry {
 	
 	public static void density(){
 		mass = density * volume;
-		System.out.println("The mass of the given figure is " + fmt.format(mass) + " kilograms");
+		double mass_pounds = mass * 2.20462;
+		System.out.println("The mass of the given figure is " + exp.format(mass) + " kilograms"
+				 + " or " + exp.format(mass_pounds) + " pounds" );
 		System.out.println("Or, it's also " + fmt.format(mass / tons) + " tons");
 		weight = mass * g;
-		System.out.println("The weight of the given figure is " + fmt.format(weight) + " Newtons");
+		System.out.println("The weight of the given figure is " + exp.format(weight) + " Newtons");
 		repeat();
 	}// end of density
 	
@@ -182,8 +186,8 @@ public class SCGeometry {
 	}// end of getRadius
 	
 	public static void answers() {
-		System.out.println("The volume is " + volume);
-		System.out.println("The surface area is " + sa);
+		System.out.println("The volume is " + fmt.format(volume));
+		System.out.println("The surface area is " + fmt.format(sa));
 		density();
 	}// end of answers
 	
@@ -200,7 +204,7 @@ public class SCGeometry {
 		}//end of if-response-0o
 		else if (!response.equals("1") && !response.equals("0") && !response.equalsIgnoreCase("o")) {
 			System.out.println("Please insert a 1 or 0.");
-			
+			repeat();
 		}//end of if-else response
 	}//end of repeat
 	
